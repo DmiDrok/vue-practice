@@ -1,7 +1,7 @@
 <template>
   <h1>Введи слово - получи перевёрнутое</h1>
   
-  <ReverseInput :words="words" @reverse="reversedListener" />
+  <ReverseInput :words="words" />
   <HistoryWords :words="words" />
 </template>
 

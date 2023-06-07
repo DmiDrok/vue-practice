@@ -1,5 +1,5 @@
 <template>
-  <input @keydown="listenKey" @input="listenInput" type="text" v-model="defaultWord">
+  <input @keydown="listenKey" type="text" v-model="defaultWord">
   <div class="btn">
     <button @click="startReverse" :disabled="disabled">Перевернуть!</button>
   </div>
@@ -20,6 +20,16 @@ export default {
     }
   },
 
+  watch: {
+    defaultWord(newWord, oldWord) {
+      if (newWord.length > 0) {
+        this.disabled = false;
+      } else {
+        this.disabled = true;
+      }
+    }
+  },
+
   methods: {
     startReverse() {
       this.reversedWord = this.defaultWord.split('').reverse().join('');
@@ -35,14 +45,6 @@ export default {
         this.startReverse();
       }
     },
-
-    listenInput() {
-      if (this.defaultWord.length > 0) {
-        this.disabled = false;
-      } else {      
-        this.disabled = true;
-      }
-    }
   }
 }
 </script>
